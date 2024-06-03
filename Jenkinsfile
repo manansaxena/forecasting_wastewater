@@ -8,13 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Check Branch') {
-            steps {
-                script {
-                    echo "Running on branch: ${env.BRANCH_NAME}"
-                }
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -26,7 +19,7 @@ pipeline {
 
         stage('Push to Registry') {
             when {
-                branch 'refs/remotes/origin/main'
+                expression { env.GIT_BRANCH == 'origin/main' }
             }
             steps {
                 script {
