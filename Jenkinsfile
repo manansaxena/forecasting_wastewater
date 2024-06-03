@@ -26,7 +26,7 @@ pipeline {
 
         stage('Push to Registry') {
             when {
-                branch 'main'
+                branch 'refs/remotes/origin/main'
             }
             steps {
                 script {
